@@ -15,7 +15,7 @@ class Citas_Modelo{
     agregar_cita(){
         //Logica y Sentencia SQL para relizar x operación sobre los datos
         return new Promise((resolve, reject) => {
-            let SentenciaSQL = `INSERT INTO citasautolavado(id_usuario,tipoVehiculo,fecha,hora) VALUES (${this.id_usuario},${this.tipoVehiculo},${this.fecha},${this.hora})`
+            let SentenciaSQL = `INSERT INTO citasautolavado(id_usuario,tipoVehiculo,fecha,hora) VALUES (${parseInt(this.id_usuario)},"${this.tipoVehiculo}",'${this.fecha}','${this.hora}')`
             connection.query(`${SentenciaSQL}`, (err, rows) => {
                 if (err || rows.length == 0) return reject(err)
                 return resolve(rows)
