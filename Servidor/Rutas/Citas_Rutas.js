@@ -8,9 +8,9 @@ const objController = new Controller()
 // === EndPoints ===
 
 Citas_Rutas.post('/agregando-cita', objController.agregar_cita)
-Citas_Rutas.get('/consultando-cita', objController.consultar_cita)
+Citas_Rutas.get('/consultando-cita/:id_cita', objController.consultar_cita)
 Citas_Rutas.put('/modificando-cita', objController.modificar_cita)
-Citas_Rutas.delete('/eliminando-cita', objController.eliminar_cita)
+Citas_Rutas.delete('/eliminando-cita/:id_cita', objController.eliminar_cita)
 
 //Agregar más rutas....
 

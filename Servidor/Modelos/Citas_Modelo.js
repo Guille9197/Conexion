@@ -41,7 +41,7 @@ class Citas_Modelo{
         //Logica y Sentencia SQL para relizar x operación sobre los datos
         return new Promise((resolve, reject) => {
             let SentenciaSQL = `UPDATE citasautolavado SET tipoVehiculo = "${this.tipoVehiculo}", 
-            fecha = "${this.fecha}", hora = "${this.hora}" WHERE id_usuario = ${parseInt(this.id_usuario)}';`
+            fecha = "${this.fecha}", hora = "${this.hora}" WHERE id_cita = ${parseInt(this.id_cita)};`
             connection.query(`${SentenciaSQL}`, (err, rows) => {
                 if (err || rows.length == 0) return reject(err)
                 return resolve(rows)
@@ -56,25 +56,16 @@ class Citas_Modelo{
     eliminar_cita(){
         //Logica y Sentencia SQL para relizar x operación sobre los datos
         return new Promise((resolve, reject) => {
-            let SentenciaSQL = `DELETE FROM citasautolavado WHERE id_usuario = ${parseInt(this.id_usuario)} 
-            AND tipoVehiculo = "${this.tipoVehiculo}" AND fecha = '${this.fecha}' AND hora = '${this.hora}';`
+            let SentenciaSQL = `DELETE FROM citasautolavado WHERE id_cita = ${parseInt(this.id_cita)};`
             connection.query(`${SentenciaSQL}`, (err, rows) => {
                 if (err || rows.length == 0) return reject(err)
                 return resolve(rows)
             })
         })
 
-
-
-        
-        
-
     }
     //-----------------------------------------------------------------------------------------
 
 }
-
-
-
 
 module.exports = Citas_Modelo;

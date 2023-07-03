@@ -28,16 +28,17 @@ class Citas_Controlador{
     }   
     
     consultar_cita(req, res){
-        let {id_cita,id_usuario,tipoVehiculo,fecha,hora} = req.body
-        const Model = new Citas_Modelo(id_cita,id_usuario,tipoVehiculo,fecha,hora)
-        
-        console.log(req.body)
+        let {id_cita} = req.params
 
+        const Model = new Citas_Modelo(id_cita,null,null,null,null)
+        
         Model.consultar_cita()
         .then(result =>{
             res.send({
                 'status':true,
-                'msg' : ""
+                'msg' : "",
+                'data':result
+
             })
         })
         .catch(err=>{
@@ -73,8 +74,8 @@ class Citas_Controlador{
 
     //Más funciones aquí...
     eliminar_cita(req, res){
-        let {id_cita,id_usuario,tipoVehiculo,fecha,hora} = req.body
-        const Model = new Citas_Modelo(id_cita,id_usuario,tipoVehiculo,fecha,hora)
+        let {id_cita} = req.params
+        const Model = new Citas_Modelo(id_cita,null,null,null,null)
         
         console.log(req.body)
 
