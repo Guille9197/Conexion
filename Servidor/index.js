@@ -7,8 +7,13 @@ const app = express()
 const authRouter = require('./Rutas/authRoutes');
 const VentasRouter = require('./Rutas/Ventas_Rutas')
 const Citas_Rutas = require('./Rutas/Citas_Rutas')
+<<<<<<< HEAD
 
 const Usuario_Rutas = require('./Rutas/Usuario_Rutas')
+=======
+const Inventario_Rutas = require('./Rutas/Inventario_Rutas')
+const VentasAutolavado_Rutas = require('./Rutas/VentasAutolavado_Rutas')
+>>>>>>> 6e71fba5470ed99a2fcc9518f0a1e7be66841ef5
 // === FIN IMPORTACIÓN DE RUTAS ===
 
 
@@ -23,8 +28,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(authRouter)
 app.use(VentasRouter)
 app.use(Citas_Rutas)
+<<<<<<< HEAD
 
 app.use(Usuario_Rutas)
+=======
+app.use(Inventario_Rutas)
+app.use(VentasAutolavado_Rutas)
+>>>>>>> 6e71fba5470ed99a2fcc9518f0a1e7be66841ef5
 // Otras rutas...
 
 // === FIN DE RUTAS ===
