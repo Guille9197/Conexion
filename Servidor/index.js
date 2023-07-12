@@ -7,6 +7,7 @@ const app = express()
 const authRouter = require('./Rutas/authRoutes');
 const VentasRouter = require('./Rutas/Ventas_Rutas')
 const Citas_Rutas = require('./Rutas/Citas_Rutas')
+const InicioSesion_Rutas = require ('./Rutas/InicioSesion_Rutas')
 // === FIN IMPORTACIÓN DE RUTAS ===
 
 
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(authRouter)
 app.use(VentasRouter)
 app.use(Citas_Rutas)
+app.use(InicioSesion_Rutas)
 // Otras rutas...
 
 // === FIN DE RUTAS ===
