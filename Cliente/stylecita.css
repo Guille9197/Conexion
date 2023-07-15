@@ -57,8 +57,14 @@ tr:hover {
 }
 
 .table-container {
-    width: 50%; /* El ancho de la tabla será la mitad de la página */
-    /*float: right; /* Alineamos la tabla a la derecha */
-    margin: 250px 10px 100px auto;
-    margin-left: 20px; /* Añadimos un margen izquierdo para separar de los botones */
+    background-color: rgba(61, 136, 171, 0.25);
+    border-radius: 20px;
+    padding: 10px;
+    max-width: 300px;
+    height: 350px;
+    margin: 140px 170px 100px auto; /* Alinear a la derecha */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Añadimos un margen izquierdo para separar de los botones */
 }
