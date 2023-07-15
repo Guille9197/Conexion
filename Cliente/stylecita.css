@@ -68,3 +68,14 @@ tr:hover {
     align-items: center;
     flex-direction: column; /* Añadimos un margen izquierdo para separar de los botones */
 }
+
+.container {
+    display: flex;
+  }
+  
+  .column {
+    flex: 1;
+    flex-basis: 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
