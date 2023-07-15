@@ -66,16 +66,16 @@ tr:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column; /* Añadimos un margen izquierdo para separar de los botones */
 }
 
 .container {
     display: flex;
-  }
-  
-  .column {
-    flex: 1;
-    flex-basis: 0;
+    flex: 1; /* Añadimos flex: 1 al contenedor para que ocupe todo el espacio disponible */
+}
+
+.column {
+    flex: 1; /* Hacemos que cada columna ocupe el mismo espacio disponible */
+    flex-basis: 0; /* Aseguramos que la flex-basis sea 0 para que el espacio disponible se divida de manera uniforme */
     padding: 10px;
     border: 1px solid #ccc;
-  }
+}
