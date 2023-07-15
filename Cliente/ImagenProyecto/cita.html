@@ -6,42 +6,67 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/30ae896a08.js" crossorigin="anonymous"></script>
     <title>CITA</title>
+    
     <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        
-        th, td {
-            text-align: left;
-            padding: 8px;
-        }
-        
-        th {
-            background-color: skyblue;
-            color: white;
-        }
-        
-        tr:nth-child(even) {
-            background-color: lightblue;
-        }
-        
-        .buttons {
-            float: right;
-        }
-        
-        .buttons button {
-            display: block;
-            margin-bottom: 10px;
-            padding: 8px;
-            background-color: skyblue;
-            color: white;
-            border: none;
-            cursor: pointer;
+        .button-container {
+            float: left;
         }
     </style>
 </head>
 <body>
+    <div class="dropdown">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            Desplegable 1
+        </button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Opción 1</a>
+            <a class="dropdown-item" href="#">Opción 2</a>
+            <a class="dropdown-item" href="#">Opción 3</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            Desplegable 2
+        </button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Opción 1</a>
+            <a class="dropdown-item" href="#">Opción 2</a>
+            <a class="dropdown-item" href="#">Opción 3</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            Desplegable 3
+        </button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Opción 1</a>
+            <a class="dropdown-item" href="#">Opción 2</a>
+            <a class="dropdown-item" href="#">Opción 3</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            Desplegable 4
+        </button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Opción 1</a>
+            <a class="dropdown-item" href="#">Opción 2</a>
+            <a class="dropdown-item" href="#">Opción 3</a>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="button-container">
+        <button type="button" class="btn btn-primary">Primary</button>
+        <br>
+        <button type="button" class="btn btn-primary">Primary</button>
+        <br>
+        <button type="button" class="btn btn-primary">Primary</button>
+        <br>
+        <button type="button" class="btn btn-primary">Primary</button>
+    </div>
+
     <table>
         <tr>
             <th>id_ventaTienda</th>
