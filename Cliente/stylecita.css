@@ -35,6 +35,28 @@ body {
     background-color: #0056b3;
 }
 
+.row {
+    display: flex;
+    justify-content: center; /* Centrar el contenido horizontalmente */
+}
+
+.col-md-6 {
+    width: 100%; /* Asegurarnos de que el ancho de la columna sea del 100% */
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column; /* Alinear los botones verticalmente */
+}
+
+.button-container button {
+    width: 100%; /* Los botones ocuparán todo el ancho disponible de su contenedor */
+    margin-bottom: 10px; /* Añadir un margen inferior para separar los botones */
+}
+
+
+
+
 /* Table styles */
 table {
     width: 100%;
