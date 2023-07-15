@@ -58,6 +58,6 @@ tr:hover {
 
 .table-container {
     width: 50%; /* El ancho de la tabla será la mitad de la página */
-    float: right; /* Alineamos la tabla a la derecha */
+    /*float: right; /* Alineamos la tabla a la derecha */
     margin-left: 20px; /* Añadimos un margen izquierdo para separar de los botones */
 }
