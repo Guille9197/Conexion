@@ -8,8 +8,8 @@
     border-radius: 20px;
     padding: 10px;
     max-width: 300px;
-    height: 300px;
-    margin: 150px 170px 100px auto; /* Alinear a la derecha */
+    height: 400px;
+    margin: 110px 170px 100px auto; /* Alinear a la derecha */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,3 +74,10 @@ body {
     background-repeat: no-repeat;
     
   }
+
+  .contenedor p {
+    margin-bottom: 30px; /* Ajustar el margen inferior del párrafo */
+    font-size: 24px; /* Aumentar el tamaño de la letra */
+    font-family: "Arial", Helvetica, Verdana; /* Cambiar el tipo de fuente */
+    font-weight: bold; /* Hacer la letra negrita */
+}
