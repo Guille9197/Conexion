@@ -29,8 +29,9 @@ class InicioSesion_Controlador{
 
     iniciar_sesion(req, res){
         let {usuario,psw} = req.params
+        console.log(usuario,psw)
 
-        const Model = new InicioSesion_Modelo(usuario,psw,null,null,null)
+        const Model = new InicioSesion_Modelo(null,null,null,usuario,psw,null)
         
         Model.iniciar_sesion()
         .then(result =>{

@@ -8,7 +8,7 @@ const objController = new Controller()
 // === EndPoints ===
 
 //InicioSesion_Rutas.post('/agregando-usuario', objController.agregar_usuario)
-InicioSesion_Rutas.get('/iniciando-sesion:usuario,psw', objController.iniciar_sesion)
+InicioSesion_Rutas.get('/iniciando-sesion/:usuario/:psw', objController.iniciar_sesion)
 //nameRouter.put('/...', objController.fun1)
 //nameRouter.delete('/...', objController.fun2)
 
