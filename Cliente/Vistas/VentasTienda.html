@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/30ae896a08.js" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link rel="stylesheet" href="estilo_ventasTienda.css">
+  <title>REGISTRO AUTOLAVADO</title>
+
+</head>
+
+<body>
+  <div class="container-fluid">
+    <h2 class="text-center">REGISTRO DE LAS VENTAS DE LA TIENDA POR DIA</h2>
+  </div>
+  <div class="contenedor-padre">
+    <div class="contenedor">
+        <div class="botones">
+        <button class="btn btn-success" id="nuevoProductoBtn"><i class="fa-solid fa-cart-plus"></i>Nuevo producto</button>
+        <button class="btn btn-warning" id="modificarProductoBtn"><i class="fa-solid fa-file-pen"></i>Modificar producto</button>
+        <button class="btn btn-warning" id="consultarProductoBtn"><i class="fa-solid fa-magnifying-glass"></i>Consultar producto</button>
+        <button class="btn btn-danger" id="eliminarProductoBtn"><i class="fa-sharp fa-solid fa-trash"></i>Eliminar producto</button>
+    </div>
+  </div>  
+  <div class="container mt-0 position-relative">
+    <div class="row">
+      <div class="col text-center">       
+        <!-- Tabla centrada -->
+        <div class="mx-auto" style="width: fit-content; height: 45vh; display: flex; align-items: center; justify-content: center;">
+          <table class="table table-withe" id="table">
+            <thead>
+              <tr>
+                <th>id_ventasTienda</th>
+                <th>id_usuario</th>
+                <th>fecha</th>
+                <th>articulo</th>
+                <th>cantidad</th>
+                <th>costo</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="position-absolute w-100 top translate" id="modal" style="background-color: rgb(17, 18, 18, 0.4)">
+    <form class="form-control w-50" id="productForm">
+      <h1 class="text-center">Registrar Ventas de Tienda</h1>
+      <div class="form-control border-white">
+        <label for="id_usuario">id_usuario:</label>
+        <input type="text" class="form-control" id="id_usuario">
+      </div>
+      <div class="form-control border-white">
+        <label for="fecha">fecha:</label>
+        <input type="date" class="form-control" id="fecha">
+      </div>
+      <div class="form-control border-white">
+        <label for="articulo">articulo:</label>
+        <select class="form-control" id="articulo">
+          <option value="opcion">Selecciona una opcion...</option>
+          <option value="Limpieza">Kit de Limpieza</option>
+          <option value="Aceites">Aceites</option>
+          <option value="Esponjas">Esponjas</option>
+        </select>
+      </div>
+      <div class="form-control border-white">
+        <label for="cantidad">cantidad:</label>
+        <input type="number" class="form-control" id="cantidad">
+      </div>
+      <div class="form-control border-white">
+        <label for="costo">costo:</label>
+        <input type="number" class="form-control" id="costo">
+      </div>
+      <div class="form-control border-white">
+        <button class="btn btn-primary">Guardar</button>
+        <button class="btn btn-danger close">Cerrar</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // Obtener referencias a los elementos del DOM
+    const nuevoProductoBtn = document.getElementById('nuevoProductoBtn');
+   const modificarProductoBtn = document.getElementById('modificarProductoBtn');
+   const consultarProductoBtn = document.getElementById('consultarProductoBtn');
+   const eliminarProductoBtn = document.getElementById('eliminarProductoBtn');
+   const modal = document.getElementById('modal');
+   const cerrarBtn = document.querySelector('.close');
+   const productForm = document.getElementById('productForm');
+   const tableBody = document.querySelector('#table tbody');
+   const rows = tableBody.getElementsByTagName('tr');
+
+   let productIdCounter = 1; // Contador para generar los IDs automáticamente
+
+   // Agregar un manejador de eventos al botón "Nuevo producto"
+   nuevoProductoBtn.addEventListener('click', function () {
+     modal.classList.remove('translate'); // Mostrar la ventana modal
+   });
+
+   // Agregar un manejador de eventos al botón "Cerrar"
+cerrarBtn.addEventListener('click', function (e) {
+ e.preventDefault(); // Evitar que se envíe el formulario y se recargue la página
+ modal.classList.add('translate'); // Ocultar la ventana modal
+});
+
+   modificarProductoBtn.addEventListener('click', function () {
+     const selectedRow = getSelectedRow();
+     if (selectedRow) {
+       const id_usuario = selectedRow.cells[1].innerText;
+       const fecha = selectedRow.cells[2].innerText;
+       const articulo = selectedRow.cells[3].innerText;
+       const cantidad = selectedRow.cells[4].innerText;
+       const costo = selectedRow.cells[5].innerText;
+
+       // Rellenar el formulario modal con los valores del producto seleccionado
+       document.getElementById('id_usuario').value = id_usuario;
+       document.getElementById('fecha').value = fecha;
+       document.getElementById('articulo').value = articulo;
+       document.getElementById('cantidad').value = cantidad;
+       document.getElementById('costo').value = costo;
+
+       modal.classList.remove('translate'); // Mostrar la ventana modal
+     }
+   });
+
+   // Agregar un manejador de eventos al botón "Modificar producto"
+   consultarProductoBtn.addEventListener('click', function () {
+     // Crear la ventana modal para ingresar el ID del producto
+     const inputModal = document.createElement('div');
+     inputModal.classList.add('modal');
+
+     const inputContent = document.createElement('div');
+     inputContent.classList.add('modal-content');
+
+     const inputLabel = document.createElement('label');
+     inputLabel.innerText = 'Ingrese el ID del producto:';
+     inputContent.appendChild(inputLabel);
+
+     const input = document.createElement('input');
+     input.setAttribute('type', 'text');
+     inputContent.appendChild(input);
+
+     const confirmButton = document.createElement('button');
+     confirmButton.innerText = 'Buscar producto';
+     confirmButton.addEventListener('click', function () {
+       const productId = input.value;
+       const productRow = findProductById(productId);
+
+       // Cerrar la ventana modal de entrada del ID
+       inputModal.remove();
+
+       if (productRow) {
+         const id_usuario = productRow.cells[1].innerText;
+         const fecha = productRow.cells[2].innerText;
+         const articulo = productRow.cells[3].innerText;
+         const cantidad = productRow.cells[4].innerText;
+         const costo = productRow.cells[5].innerText;
+
+         // Crear la pantalla modal para mostrar los detalles del producto consultado
+         const detailsModal = document.createElement('div');
+         detailsModal.classList.add('modal');
+
+         const detailsContent = document.createElement('div');
+         detailsContent.classList.add('modal-content');
+
+         // Agregar los detalles del producto a la pantalla modal
+         const details = document.createElement('p');
+         details.innerHTML = `Detalles del producto:<br>
+           id_usuario: ${id_usuario}<br>
+           fecha: ${fecha}<br>
+           articulo: ${articulo}<br>
+           cantidad: ${cantidad}<br>
+           costo: ${costo}`;
+
+         detailsContent.appendChild(details);
+
+         // Agregar el botón de cerrar
+         const closeButton = document.createElement('button');
+         closeButton.innerText = 'Cerrar';
+         closeButton.classList.add('close-button');
+         closeButton.addEventListener('click', function () {
+           detailsModal.remove();
+         });
+         detailsContent.appendChild(closeButton);
+
+         detailsModal.appendChild(detailsContent);
+
+         // Agregar la pantalla modal al cuerpo del documento
+         document.body.appendChild(detailsModal);
+       } else {
+         // Crear una ventana modal para mostrar el mensaje de error
+         const errorModal = document.createElement('div');
+         errorModal.classList.add('modal');
+
+         const errorContent = document.createElement('div');
+         errorContent.classList.add('modal-content');
+
+         const errorMessage = document.createElement('p');
+         errorMessage.innerText = 'El producto con el ID especificado no existe.';
+
+         const closeButton = document.createElement('button');
+         closeButton.innerText = 'Cerrar';
+         closeButton.classList.add('close-button');
+         closeButton.addEventListener('click', function () {
+           errorModal.remove();
+         });
+
+         errorContent.appendChild(errorMessage);
+         errorContent.appendChild(closeButton);
+
+         errorModal.appendChild(errorContent);
+
+         document.body.appendChild(errorModal);
+       }
+     });
+
+     inputContent.appendChild(confirmButton);
+     inputModal.appendChild(inputContent);
+
+     // Agregar la ventana modal de entrada del ID al cuerpo del documento
+     document.body.appendChild(inputModal);
+   });
+
+   // Agregar un manejador de eventos al botón "Eliminar producto"
+   eliminarProductoBtn.addEventListener('click', function () {
+     const selectedRow = getSelectedRow();
+     if (selectedRow) {
+       // Crear la ventana modal
+       const modal = document.createElement('div');
+       modal.classList.add('modal');
+
+       // Contenido de la ventana modal
+       const modalContent = document.createElement('div');
+       modalContent.classList.add('modal-content');
+
+       // Mensaje de confirmación
+       const confirmationMsg = document.createElement('p');
+       confirmationMsg.textContent = '¿Está seguro de eliminar el producto seleccionado?';
+
+       // Botón de confirmación
+       const confirmBtn = document.createElement('button');
+       confirmBtn.textContent = 'Eliminar';
+       confirmBtn.addEventListener('click', function () {
+         tableBody.removeChild(selectedRow);
+         closeModal();
+       });
+
+       // Botón de cancelar
+       const cancelBtn = document.createElement('button');
+       cancelBtn.textContent = 'Cancelar';
+       cancelBtn.addEventListener('click', closeModal);
+
+       // Agregar contenido a la ventana modal
+       modalContent.appendChild(confirmationMsg);
+       modalContent.appendChild(confirmBtn);
+       modalContent.appendChild(cancelBtn);
+
+       // Agregar contenido a la ventana modal
+       modal.appendChild(modalContent);
+
+       // Agregar ventana modal al documento
+       document.body.appendChild(modal);
+
+       // Función para cerrar la ventana modal
+       function closeModal() {
+         document.body.removeChild(modal);
+       }
+     } else {
+       alert('Por favor, seleccione un producto para eliminar.');
+     }
+   });
+
+   // Agregar un manejador de eventos al formulario de producto
+   productForm.addEventListener('submit', function (e) {
+     e.preventDefault(); // Evitar que se envíe el formulario y se recargue la página
+
+     // Obtener los valores ingresados en los campos del formulario
+     const id_usuario = document.getElementById('id_usuario').value;
+     const fecha = document.getElementById('fecha').value;
+     const articulo = document.getElementById('articulo').value;
+     const cantidad = document.getElementById('cantidad').value;
+     const costo = document.getElementById('costo').value;
+
+     // Verificar si hay una fila seleccionada
+     const selectedRow = getSelectedRow();
+     if (selectedRow) {
+       // Actualizar los valores de la fila seleccionada con los nuevos valores
+       selectedRow.cells[1].innerText = id_usuario;
+       selectedRow.cells[2].innerText = fecha;
+       selectedRow.cells[3].innerText = articulo;
+       selectedRow.cells[4].innerText = cantidad;
+       selectedRow.cells[5].innerText = costo;
+     } else {
+       // Crear una nueva fila en la tabla con los valores ingresados
+       const newRow = document.createElement('tr');
+       newRow.innerHTML = `
+         <td>${productIdCounter}</td>
+         <td>${id_usuario}</td>
+         <td>${fecha}</td>
+         <td>${articulo}</td>
+         <td>${cantidad}</td>
+         <td>${costo}</td>
+       `;
+
+       newRow.addEventListener('click', function () {
+         // Eliminar la clase 'selected-row' de todas las filas
+         const allRows = tableBody.querySelectorAll('tr');
+         allRows.forEach(function (row) {
+           row.classList.remove('selected-row');
+         });
+
+         // Agregar la clase 'selected-row' a la fila seleccionada
+         this.classList.add('selected-row');
+       });
+
+       tableBody.appendChild(newRow); // Agregar la nueva fila a la tabla
+       productIdCounter++; // Incrementar el contador para el siguiente ID
+     }
+
+     modal.classList.add('translate'); // Ocultar la ventana modal
+     productForm.reset(); // Restablecer los valores del formulario
+   });
+
+   // Función para obtener la fila seleccionada en la tabla
+   function getSelectedRow() {
+     const selectedRow = tableBody.querySelector('.selected-row');
+     return selectedRow;
+   }
+
+   // Función para encontrar un producto por su ID en la tabla
+   function findProductById(productId) {
+     for (let i = 0; i < rows.length; i++) {
+       const idCell = rows[i].cells[0];
+       if (idCell.innerText === productId) {
+         return rows[i];
+       }
+     }
+     return null; // Producto no encontrado
+   }
+ </script>
+  </script>
+</body>
+
+</html>
+
+</body>
