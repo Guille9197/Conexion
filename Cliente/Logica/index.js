@@ -10,9 +10,13 @@ ingresar.addEventListener("click",(e)=>{
     .then(rest=>rest.ok?rest.json():Promise.reject(rest))
     .then(json=>{
         console.log("Se conecto con el Servidor",json)
-        location.href="/Cliente/menu.html"
+        location.href="/Conexion/Cliente/Vistas/menu.html"
     })
     .catch(error=>{
         console.log("Error con el Servidor")
     })
+})
+
+registrarme.addEventListener("click",(e)=>{
+    location.href="/Conexion/Cliente/Vistas/registro.html"
 })
