@@ -17,8 +17,8 @@ body {
     border-radius: 20px;
     padding: 20px;
     max-width: 450px;
-    height: 350px;
-    margin: 120px 0px 100px 900px; /* Alinear a la derecha */
+    height: 400px;
+    margin: 100px 0px 100px 900px; /* Alinear a la derecha */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -126,8 +126,19 @@ form .grupo_boton {
     border-radius: 4px;
 }
 
+.contenedor .botones .cerrarsesion {
+    background-color: #064469;
+    padding: 12px 80px 12px 42px;
+    white-space: nowrap;
+    margin-bottom: 20px;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
 .contenedor p {
-    margin-bottom: -35px; /* Ajustar el margen inferior del párrafo */
+    margin-bottom: -40px; /* Ajustar el margen inferior del párrafo */
     font-size: 24px; /* Aumentar el tamaño de la letra */
     font-family: "Arial", Helvetica, Verdana; /* Cambiar el tipo de fuente */
     font-weight: bold; /* Hacer la letra negrita */

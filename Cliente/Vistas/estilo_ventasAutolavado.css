@@ -77,7 +77,7 @@
     padding: 10px;
     max-width: 400px;
     height: 300px;
-    margin: 60px 0px 100px 20px; /* Alinear a la derecha */
+    margin: 60px 0px 100px 100px; /* Alinear a la derecha */
     display: flex;
     justify-content: center;
     align-items: center;
