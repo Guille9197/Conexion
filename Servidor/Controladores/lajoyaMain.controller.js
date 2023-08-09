@@ -20,11 +20,11 @@ controller.getHistorial = async (req, res) =>{
             const año = fecha.getFullYear();
             result.tienda[i].fecha = `${dia.toString().padStart(2, '0')}/${mes.toString().padStart(2, '0')}/${año}`;
         }
-        res.render('historial', {vacio: false,autolavado : result.autolavado, tienda: result.tienda});
+        res.status(200).json({vacio: false,autolavado : result.autolavado, tienda: result.tienda});
     })
     .catch(error => {
         console.log("Rejected:", error);
-    });    
+    });
 };
 
 controller.getVenta = async (req, res) =>{
@@ -43,11 +43,10 @@ controller.getVenta = async (req, res) =>{
         const año = fecha.getFullYear();
         result.tienda[0].fecha = `${dia.toString().padStart(2, '0')}/${mes.toString().padStart(2, '0')}/${año}`;
         
-        res.render('historial', {vacio: false,autolavado : result.autolavado, tienda: result.tienda});
+        res.status(200).json({vacio: false,autolavado : result.autolavado, tienda: result.tienda});
     })
     .catch(error => {
-        console.log("Rejected:", error);
-        res.render('historial', {vacio: true,autolavado : null, tienda: null});
+        console.log("Rejected:", error);        
     });  
 };
 
@@ -55,11 +54,10 @@ controller.eliminar = async (req, res) =>{
     const id = req.params.id;
     historial.dropRow(id)
     .then(result =>{
-        res.redirect('/lajoya/historial');
+        res.status(200).json({vacio: false});
     })
     .catch(error =>{
-        console.log(error);
-        res.redirect('/lajoya/historial');
+        console.log(error);        
     })
 };
 
@@ -67,11 +65,10 @@ controller.eliminarAL = async (req, res) =>{
     const id = req.params.id;
     historial.deleteAutolavado(id)
     .then(result =>{
-        res.redirect('/lajoya/historial');
+        res.status(200).json({vacio: false});
     })
     .catch(error =>{
         console.log(error);
-        res.redirect('/lajoya/historial');
     })
 };
 
@@ -79,11 +76,10 @@ controller.eliminarTi = async (req, res) =>{
     const id = req.params.id;
     historial.deleteTienda(id)
     .then(result =>{
-        res.redirect('/lajoya/historial');
+        res.status(200).json({vacio: false});
     })
     .catch(error =>{
         console.log(error);
-        res.redirect('/lajoya/historial');
     })
 };
 

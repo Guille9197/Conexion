@@ -64,7 +64,8 @@ app.use(VentasTienda_Rutas)
 // Otras rutas...
 
 // === FIN DE RUTAS ===
-
+const mainRutas = require('./Rutas/lajoyaMain.routes');
+app.use('/ajax', mainRutas);
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
