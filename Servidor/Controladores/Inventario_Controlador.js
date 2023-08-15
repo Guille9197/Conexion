@@ -6,8 +6,8 @@ class Inventario_Controlador{
 
     //--Función Base--//
     agregar_producto(req, res){
-        let{id_inventario, codigo, nombre, descripcion, cantidad, entrada, salida} = req.body
-        const Model = new Inventario_Modelo(id_inventario, codigo, nombre, descripcion, cantidad, entrada, salida)
+        let{codigo, nombre, descripcion, cantidad, entrada, salida} = req.body
+        const Model = new Inventario_Modelo(null, codigo, nombre, descripcion, cantidad, entrada, salida)
 
         console.log(req.body)
 
@@ -37,6 +37,25 @@ class Inventario_Controlador{
             res.send({
                 'status':true,
                 'msg' : "Producto en existencia",
+                'data':result
+            })
+        })
+        .catch(err=>{
+            console.error("Error al...", err);
+            res.status(500).send({
+                'status':false,
+                'msg' : "Error al [...] Intento más Tarde"
+            })
+        })
+    }
+
+    consultar_productos(req,res){
+        const Model = new Inventario_Modelo(null, null, null, null, null, null, null)
+        Model.consultar_productos()
+        .then(result =>{
+            res.send({
+                'status':true,
+                'msg' : "Productos en existencia",
                 'data':result
             })
         })

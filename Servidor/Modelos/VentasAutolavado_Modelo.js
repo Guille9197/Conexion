@@ -37,6 +37,30 @@ class VentasAutolavado_Modelo{
 
     }
 
+    consultar_ventasAutolavados() {
+        return new Promise((resolve, reject) => {
+            let SentenciaSQL = `SELECT * FROM ventasautolavado`
+            connection.query(`${SentenciaSQL}`, (err, rows) => {
+                if (err || rows.length === 0) {
+                    return reject(err);
+                }
+    
+                // Formatear las fechas antes de resolver la promesa
+                const formattedRows = rows.map(row => {
+                    const fecha = new Date(row.fecha);
+                    const formattedDate = fecha.toISOString().split('T')[0];
+                    return {
+                        ...row,
+                        fecha: formattedDate
+                    };
+                });
+    
+                return resolve(formattedRows);
+            });
+        });
+    }
+    
+
     modificar_ventaAutolavado(){
         //Logica y Sentencia SQL para relizar x operación sobre los datos
         return new Promise((resolve, reject) => {

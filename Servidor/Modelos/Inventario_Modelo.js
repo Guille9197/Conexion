@@ -39,6 +39,18 @@ class Inventario_Modelo{
 
     }
 
+    consultar_productos(){
+        //Logica y Sentencia SQL para relizar x operación sobre los datos
+        return new Promise((resolve, reject) => {
+            let SentenciaSQL = `SELECT * FROM inventario`
+            connection.query(`${SentenciaSQL}`, (err, rows) => {
+                if (err || rows.length == 0) return reject(err)
+                return resolve(rows)
+            })
+        })
+
+    }
+
     modificar_producto(){
         //Logica y Sentencia SQL para relizar x operación sobre los datos
         return new Promise((resolve, reject) => {

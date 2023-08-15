@@ -8,6 +8,7 @@ const objController = new Controller()
 // === EndPoints ===
 VentasAutolavado_Rutas.post('/agregando_ventaAutolavado', objController.agregar_ventaAutolavado)
 VentasAutolavado_Rutas.get('/consultando_ventaAutolavado/:id_ventasAutolavado', objController.consultar_ventaAutolavado)
+VentasAutolavado_Rutas.get('/consultar_ventasAutolavados', objController.consultar_ventasAutolavados)
 VentasAutolavado_Rutas.put('/modificando_ventaAutolavado', objController.modificar_ventaAutolavado)
 VentasAutolavado_Rutas.delete('/eliminando_ventaAutolavado/:id_ventasAutolavado', objController.eliminar_ventaAutolavado)
 

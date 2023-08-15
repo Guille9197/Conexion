@@ -9,6 +9,7 @@ const objController = new Controller()
 
 Inventario_Rutas.post('/agregando_producto', objController.agregar_producto)
 Inventario_Rutas.get('/consultando_producto/:id_inventario', objController.consultar_producto)
+Inventario_Rutas.get('/consultando_productos', objController.consultar_productos)
 Inventario_Rutas.put('/modificando_producto', objController.modificar_producto)
 Inventario_Rutas.delete('/eliminando_producto/:id_inventario', objController.eliminar_producto)
 
