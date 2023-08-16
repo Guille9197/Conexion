@@ -1,6 +1,7 @@
 //Importar modelo(s)
 
 const VentasTienda_Modelo = require("../Modelos/VentasTienda_Modelo");
+const moment = require('moment');
 
 class VentasTienda_Controlador{
 
@@ -27,12 +28,12 @@ class VentasTienda_Controlador{
         })
     }    
 
-    consultar_ventaTienda(req,res){
+    consultando_ventaTienda(req,res){
         let {id_ventaTienda} = req.params
         const Model = new VentasTienda_Modelo(id_ventaTienda, null, null, null, null,null)
 
 
-        Model.consultar_ventaTienda()
+        Model.consultando_ventaTienda()
         .then(result =>{
             res.send({
                 'status':true,
@@ -47,6 +48,37 @@ class VentasTienda_Controlador{
                 'msg' : "Error al [...] Intento más Tarde"
             })
         })
+    }
+
+    consultar_ventaTienda(req, res) {
+        const Model = new VentasTienda_Modelo( null, null, null, null,null, null)
+        Model.consultar_ventaTienda()
+        .then(result => {
+            const formattedResults = result.map(row => {
+                // Formatear la columna "fecha" sin la hora
+                const fecha = new Date(row.fecha);
+                const formattedDate = fecha.toISOString().split('T')[0];
+                
+                // Retornar una nueva fila con la fecha formateada
+                return {
+                    ...row,
+                    fecha: formattedDate
+                };
+            });
+            
+            res.send({
+                'status': true,
+                'msg': "Productos en existencia",
+                'data': formattedResults
+            });
+        })
+        .catch(err => {
+            console.error("Error al...", err);
+            res.status(500).send({
+                'status': false,
+                'msg': "Error al [...] Intento más Tarde"
+            });
+        });
     }
 
     modificar_ventaTienda(req, res){
