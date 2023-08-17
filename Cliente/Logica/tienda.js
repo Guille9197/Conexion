@@ -84,7 +84,7 @@ GuardarVentaTiendaBtn.addEventListener("click", (e) => {
             .then(rest => rest.ok ? rest.json() : Promise.reject(rest))
             .then(json => {
                 console.log("Se conecto con el Servidor", json);
-                //location.href="/Cliente/Vistas/Inventario.html"
+                location.href="./../Vistas/VentasTienda.html"
             })
             .catch(error => {
                 console.log("Error con el Servidor");
@@ -108,10 +108,12 @@ GuardarVentaTiendaBtn.addEventListener("click", (e) => {
         };
 
         fetch('http://localhost:5000/agregando_ventaTienda', settings)
-            .then(rest => rest.ok ? rest.json() : Promise.reject(rest))
+            .then(rest =>{
+              return rest.json();
+            } )
             .then(json => {
                 console.log("Se conecto con el Servidor", json);
-                //location.href="/Cliente/Vistas/Inventario.html"
+                location.href="./../Vistas/VentasTienda.html"
             })
             .catch(error => {
                 console.log("Error con el Servidor");

@@ -8,14 +8,15 @@ class VentasAutolavado_Controlador{
 
     //--Función Base--//
     agregar_ventaAutolavado(req, res){
-        let{id_ventasAutolavado, id_usuario, fecha, tipoVehiculo, costo} = req.body
+        console.log('body:', req.body)
+        let{id_ventasAutolavado, id_usuario, fecha, tipoVehiculo, costo} = req.body        
         const Model = new VentasAutolavado_Modelo(id_ventasAutolavado, id_usuario, fecha, tipoVehiculo, costo)
 
-        console.log(req.body)
+        
 
         Model.agregar_ventaAutolavado()
         .then(result =>{
-            res.send({
+            res.status(200).send({
                 'status':true,
                 'msg' : "Venta agregado correctamente"
             })
@@ -91,7 +92,7 @@ class VentasAutolavado_Controlador{
 
         Model.modificar_ventaAutolavado()
         .then(result =>{
-            res.send({
+            res.status(200).send({
                 'status':true,
                 'msg' : "Venta Modificado correctamente"
             })

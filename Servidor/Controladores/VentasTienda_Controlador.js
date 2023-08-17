@@ -6,15 +6,16 @@ const moment = require('moment');
 class VentasTienda_Controlador{
 
     //--Función Base--//
-    agregar_ventaTienda(req, res){
+    agregar_ventaTienda(req, res){        
+        console.log('bodyTienda:', req.body)
         let{id_ventaTienda, id_usuario, fecha, articulo, cantidad, costo} = req.body
         const Model = new VentasTienda_Modelo(id_ventaTienda, id_usuario, fecha, articulo, cantidad, costo)
 
-        console.log(req.body)
+        
 
         Model.agregar_ventaTienda()
         .then(result =>{
-            res.send({
+            res.status(200).send({
                 'status':true,
                 'msg' : "Venta de la tienda agregado correctamente"
             })
@@ -88,7 +89,7 @@ class VentasTienda_Controlador{
 
         Model.modificar_ventaTienda()
         .then(result =>{
-            res.send({
+            res.status(200).send({
                 'status':true,
                 'msg' : "Venta de la Tienda Modificado correctamente"
             })

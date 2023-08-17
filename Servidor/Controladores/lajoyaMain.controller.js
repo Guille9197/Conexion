@@ -31,17 +31,21 @@ controller.getVenta = async (req, res) =>{
     const id = req.params.id;
     historial.getVentaById(id)
     .then(result => {
-        const fechaA = result.autolavado[0].fecha;
-        const diaA = fechaA.getDate();
-        const mesA = fechaA.getMonth() + 1;
-        const añoA = fechaA.getFullYear();
-        result.autolavado[0].fecha = `${diaA.toString().padStart(2, '0')}/${mesA.toString().padStart(2, '0')}/${añoA}`;
-            
-        const fecha = result.tienda[0].fecha;
-        const dia = fecha.getDate();
-        const mes = fecha.getMonth() + 1;
-        const año = fecha.getFullYear();
-        result.tienda[0].fecha = `${dia.toString().padStart(2, '0')}/${mes.toString().padStart(2, '0')}/${año}`;
+        if (result.autolavado[0]){
+            const fechaA = result.autolavado[0].fecha;
+            const diaA = fechaA.getDate();
+            const mesA = fechaA.getMonth() + 1;
+            const añoA = fechaA.getFullYear();
+            result.autolavado[0].fecha = `${diaA.toString().padStart(2, '0')}/${mesA.toString().padStart(2, '0')}/${añoA}`;
+        }
+        
+        if (result.tienda[0]){
+            const fecha = result.tienda[0].fecha;
+            const dia = fecha.getDate();
+            const mes = fecha.getMonth() + 1;
+            const año = fecha.getFullYear();
+            result.tienda[0].fecha = `${dia.toString().padStart(2, '0')}/${mes.toString().padStart(2, '0')}/${año}`;
+        }        
         
         res.status(200).json({vacio: false,autolavado : result.autolavado, tienda: result.tienda});
     })
