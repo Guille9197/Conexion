@@ -81,7 +81,7 @@ BtnGuardarVenta.addEventListener("click", (e) => {
             .then(rest => rest.ok ? rest.json() : Promise.reject(rest))
             .then(json => {
                 console.log("Se conecto con el Servidor", json);
-                //location.href="/Cliente/Vistas/Inventario.html"
+                location.href="./../Vistas/VentasAutolavado.html"
             })
             .catch(error => {
                 console.log("Error con el Servidor");
@@ -107,7 +107,7 @@ BtnGuardarVenta.addEventListener("click", (e) => {
             .then(rest => rest.ok ? rest.json() : Promise.reject(rest))
             .then(json => {
                 console.log("Se conecto con el Servidor", json);
-                //location.href="/Cliente/Vistas/Inventario.html"
+                location.href="./../Vistas/VentasAutolavado.html"
             })
             .catch(error => {
                 console.log("Error con el Servidor");

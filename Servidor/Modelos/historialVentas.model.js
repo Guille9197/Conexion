@@ -29,77 +29,66 @@ queries.getVentas =async ()=>{
 
 queries.getVentaById = async (id)=>{
     
-    let sqlAutolavado = `SELECT * FROM historialventas H 
-                        JOIN ventasautolavado V ON H.id_ventasAutolavado = V.id_ventasAutolavado 
+    const sqlAutolavado = `SELECT * FROM ventasautolavado
                         NATURAL JOIN usuarios
-                        WHERE id_historialVentas = ${id}`;
+                        WHERE id_ventasAutolavado = ${id}`;
     
-    let sqlTienda = `SELECT * FROM historialventas H 
-                    JOIN ventastienda V ON H.id_ventasTienda = V.id_ventaTienda 
+    const sqlTienda = `SELECT * FROM ventastienda                     
                     NATURAL JOIN usuarios
-                    WHERE id_historialVentas = ${id}`;
+                    WHERE id_ventaTienda = ${id}`;
+
+    
         
     return new Promise((resolve, reject) => {
-        connection.query(`${sqlAutolavado}`, (err, rows) => {
-            const resultado = {autolavado: null, tienda: null};
-            if (err || rows.length == 0){                
+        const resultado = {autolavado: null, tienda: null};        
+        connection.query(`${sqlAutolavado}`, (err, rows) => {            
+            if (err){                
                 reject(err);
             }else{                
-                resultado.autolavado = rows;
-                connection.query(`${sqlTienda}`, (errT, rowsT) => {
-                    if (err || rowsT.length == 0){                        
+                resultado.autolavado = rows;      
+                connection.query(`${sqlTienda}`, (errT, rowsT) => {            
+                    if (errT){                                                        
                         reject(errT);
                     }else{                    
-                        resultado.tienda = rowsT;                        
+                        resultado.tienda = rowsT;
                         resolve(resultado);
                     }        
-                });
+                });          
             }        
-        }) 
+        })         
     });
 }
 
-queries.dropRow = async (id)=>{
-    let obtenerId = `SELECT * FROM historialventas
-    WHERE id_historialVentas = ${id};`
+queries.dropRow = async (id)=>{    
     let sqlBase = `DELETE FROM historialventas
     WHERE id_historialVentas = ${id};`    
         
     return new Promise((resolve, reject) => {
-        connection.query(`${obtenerId}`, (err, rows) => {            
+        connection.query(`${sqlBase}`, (err, rows) => {            
             if (err){  
                 reject(err);
             }else{
-                let idAutolavado = rows[0].id_ventasAutolavado;
-                let idTienda = rows[0].id_ventasTienda;
-                connection.query(`${sqlBase}`, (err, rows) => {            
+                let autolavado = `DELETE FROM ventasautolavado
+                WHERE id_ventasAutolavado = ${id};`;                
+                connection.query(`${autolavado}`, (err, rows) => {            
                     if (err){  
                         reject(err);
-                    }else{
-                        let autolavado = `DELETE FROM ventasautolavado
-                        WHERE id_ventasAutolavado = ${idAutolavado};`;                
-                        connection.query(`${autolavado}`, (err, rows) => {            
-                            if (err){  
+                    }else{                
+                        let tienda = `DELETE FROM ventastienda
+                        WHERE id_ventaTienda = ${id};`
+                        connection.query(`${tienda}`, (err, rows) => {       
+                            console.log('va tienda')     
+                            if (err){
                                 reject(err);
                             }else{                
-                                let tienda = `DELETE FROM ventastienda
-                                WHERE id_ventaTienda = ${idTienda};`
-                                connection.query(`${tienda}`, (err, rows) => {       
-                                    console.log('va tienda')     
-                                    if (err){
-                                        reject(err);
-                                    }else{                
-                                        resolve(rows);
-                                    }        
-                                });
+                                resolve(rows);
                             }        
                         });
                     }        
                 });
-            }
+            }        
         });
-        
-    });
+    })
 };
 
 queries.deleteAutolavado = (id)=>{

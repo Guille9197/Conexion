@@ -50,38 +50,42 @@
   </div>
 
   <div class="position-absolute w-100 top translate" id="modal" style="background-color: rgb(17, 18, 18, 0.4)">
-    <form class="form-control w-50" id="productForm">
-      <h1 class="text-center">Registrar Ventas de Tienda</h1>
-      <div class="form-control border-white">
-        <label for="id_usuario">id_usuario:</label>
-        <input type="text" class="form-control" id="id_usuario">
-      </div>
-      <div class="form-control border-white">
-        <label for="fecha">fecha:</label>
-        <input type="date" class="form-control" id="fecha">
-      </div>
-      <div class="form-control border-white">
-        <label for="articulo">articulo:</label>
-        <select class="form-control" id="articulo">
-          <option value="opcion">Selecciona una opcion...</option>
-          <option value="Limpieza">Kit de Limpieza</option>
-          <option value="Aceites">Aceites</option>
-          <option value="Esponjas">Esponjas</option>
-        </select>
-      </div>
-      <div class="form-control border-white">
-        <label for="cantidad">cantidad:</label>
-        <input type="number" class="form-control" id="cantidad">
-      </div>
-      <div class="form-control border-white">
-        <label for="costo">costo:</label>
-        <input type="number" class="form-control" id="costo">
-      </div>
-      <div class="form-control border-white">
+    <div class="form-control w-50 ">
+      <form class="form-control border-white" id="productForm">
+        <h1 class="text-center">Registrar Ventas de Tienda</h1>
+        <div class="form-control border-white">
+          <label for="id_usuario">id_usuario:</label>
+          <input type="text" class="form-control" id="id_usuario">
+        </div>
+        <div class="form-control border-white">
+          <label for="fecha">fecha:</label>
+          <input type="date" class="form-control" id="fecha">
+        </div>
+        <div class="form-control border-white">
+          <label for="articulo">articulo:</label>
+          <select class="form-control" id="articulo">
+            <option value="opcion">Selecciona una opcion...</option>
+            <option value="Limpieza">Kit de Limpieza</option>
+            <option value="Aceites">Aceites</option>
+            <option value="Esponjas">Esponjas</option>
+          </select>
+        </div>
+        <div class="form-control border-white">
+          <label for="cantidad">cantidad:</label>
+          <input type="number" class="form-control" id="cantidad">
+        </div>
+        <div class="form-control border-white">
+          <label for="costo">costo:</label>
+          <input type="number" class="form-control" id="costo">        
+        </div>
+        
+      </form>
+      
+      <div>
         <button class="btn btn-primary" id="BtnGuardarVenta">Guardar</button>
-        <button class="btn btn-danger close">Cerrar</button>
-      </div>
-    </form>
+        <button class="btn btn-danger close">Cerrar</button>      
+      </div>      
+    </div>
   </div>
 
   <script>

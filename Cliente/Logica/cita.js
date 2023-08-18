@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 let regresarBtn = document.getElementById("regresarBtn");
 let BtnGuardar = document.getElementById("BtnGuardar");
 let BtnConfirmDelete = document.getElementById("eliminarProductoBtn");
@@ -316,3 +317,10 @@ function findProductById(productId) {
 
   
   
+=======
+let regresarBtn = document.getElementById("regresarBtn")
+
+regresarBtn.addEventListener("click", (e)=>{
+    location.href="/Conexion/Cliente/Vistas/menu.html"
+})
+>>>>>>> a1f354bed3642ee8070729ff7b0bd7844368eff1

@@ -18,6 +18,7 @@ class VentasTienda_Modelo{
         return new Promise((resolve, reject) => {
             let SentenciaSQL = `INSERT INTO ventastienda(id_usuario, fecha, articulo, cantidad,costo)
             VALUES (${parseInt(this.id_usuario)}, "${this.fecha}", "${this.articulo}", ${parseInt(this.cantidad)}, ${parseFloat(this.costo)})`
+            console.log('sqlp', SentenciaSQL);
             connection.query(`${SentenciaSQL}`, (err, rows) => {
                 if (err || rows.length == 0) return reject(err)
                 return resolve(rows)

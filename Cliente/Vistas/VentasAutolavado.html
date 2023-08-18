@@ -49,7 +49,8 @@
   </div>
 
   <div class="position-absolute w-100 top translate" id="modal" style="background-color: rgb(17, 18, 18, 0.4)">
-    <form class="form-control w-50" id="productForm">
+    <div class="form-control w-50 border-white">
+    <form class="form-control border-white" id="productForm">
       <h1 class="text-center">Registrar Ventas de Autolavado</h1>
       <div class="form-control border-white">
         <label for="id_usuario">id_usuario:</label>
@@ -71,12 +72,12 @@
       <div class="form-control border-white">
         <label for="costo">costo:</label>
         <input type="number" class="form-control" id="costo">
-      </div>
-      <div class="form-control border-white">
-        <button class="btn btn-primary" id="BtnGuardarVenta">Guardar</button>
-        <button class="btn btn-danger close">Cerrar</button>
-      </div>
+      </div>      
     </form>
+    
+      <button class="btn btn-primary" id="BtnGuardarVenta">Guardar</button>
+      <button class="btn btn-danger close">Cerrar</button>
+    </div>
   </div>
 
   <script>
