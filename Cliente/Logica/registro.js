@@ -26,6 +26,7 @@ registrarme.addEventListener("click",(e)=>{
     .then(rest=>rest.ok?rest.json():Promise.reject(rest))
     .then(json=>{
         console.log("Se conecto con el Servidor",json)
+        location.href="/Conexion/Cliente/index.html"
         //location.href="/Cliente/Vistas/Inventario.html"
     })
     .catch(error=>{

@@ -37,10 +37,22 @@ class Citas_Modelo{
 
     }
 
+    consultar_citas(){
+        //Logica y Sentencia SQL para relizar x operación sobre los datos
+        return new Promise((resolve, reject) => {
+            let SentenciaSQL = `SELECT * FROM citasautolavado`
+            connection.query(`${SentenciaSQL}`, (err, rows) => {
+                if (err || rows.length == 0) return reject(err)
+                return resolve(rows)
+            })
+        })
+
+    }
+
     modificar_cita(){
         //Logica y Sentencia SQL para relizar x operación sobre los datos
         return new Promise((resolve, reject) => {
-            let SentenciaSQL = `UPDATE citasautolavado SET tipoVehiculo = "${this.tipoVehiculo}", 
+            let SentenciaSQL = `UPDATE citasautolavado SET id_usuario = ${parseInt(this.id_usuario)}, tipoVehiculo = "${this.tipoVehiculo}", 
             fecha = "${this.fecha}", hora = "${this.hora}" WHERE id_cita = ${parseInt(this.id_cita)};`
             connection.query(`${SentenciaSQL}`, (err, rows) => {
                 if (err || rows.length == 0) return reject(err)

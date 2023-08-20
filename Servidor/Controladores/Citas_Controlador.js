@@ -50,6 +50,28 @@ class Citas_Controlador{
         })
     }  
 
+    consultar_citas(req, res){
+
+        const Model = new Citas_Modelo(null,null,null,null,null)
+        
+        Model.consultar_citas()
+        .then(result =>{
+            res.send({
+                'status':true,
+                'msg' : "Citas existentes",
+                'data':result
+
+            })
+        })
+        .catch(err=>{
+            console.error("Error al...", err);
+            res.status(500).send({
+                'status':false,
+                'msg' : "Error al [...] Intento más Tarde"
+            })
+        })
+    }  
+
     modificar_cita(req, res){
         let {id_cita,id_usuario,tipoVehiculo,fecha,hora} = req.body
         const Model = new Citas_Modelo(id_cita,id_usuario,tipoVehiculo,fecha,hora)
@@ -60,7 +82,7 @@ class Citas_Controlador{
         .then(result =>{
             res.send({
                 'status':true,
-                'msg' : ""
+                'msg' : "Cita modificada correctamente"
             })
         })
         .catch(err=>{

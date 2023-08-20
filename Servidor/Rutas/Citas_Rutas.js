@@ -7,14 +7,11 @@ const objController = new Controller()
 
 // === EndPoints ===
 
-Citas_Rutas.post('/agregando-cita', objController.agregar_cita)
-Citas_Rutas.get('/consultando-cita/:id_cita', objController.consultar_cita)
-Citas_Rutas.put('/modificando-cita', objController.modificar_cita)
-Citas_Rutas.delete('/eliminando-cita/:id_cita', objController.eliminar_cita)
-
-//Agregar más rutas....
-
-// === Fin Endpoints ===
+Citas_Rutas.post('/agregando_cita', objController.agregar_cita)
+Citas_Rutas.get('/consultando_cita/:id_cita', objController.consultar_cita)
+Citas_Rutas.get('/consultando_citas', objController.consultar_citas)
+Citas_Rutas.put('/modificando_cita', objController.modificar_cita)
+Citas_Rutas.delete('/eliminando_cita/:id_cita', objController.eliminar_cita)
 
 module.exports = Citas_Rutas;
 

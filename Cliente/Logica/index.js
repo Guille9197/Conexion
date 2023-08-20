@@ -10,11 +10,8 @@ ingresar.addEventListener("click",(e)=>{
     .then(rest=>rest.ok?rest.json():Promise.reject(rest))
     .then(json=>{
         console.log("Se conecto con el Servidor",json)
-<<<<<<< HEAD
-        location.href="/Cliente/Vistas/menu.html"
-=======
         location.href="/Conexion/Cliente/Vistas/menu.html"
->>>>>>> 498fd835fd4f73e5d06cac7e3dfb1f92e7ad35df
+
     })
     .catch(error=>{
         console.log("Error con el Servidor")

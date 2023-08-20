@@ -19,7 +19,7 @@ citas.addEventListener("click", (e)=>{
 })
 
 historialVentas.addEventListener("click", (e)=>{
-    location.href="/Conexion/Cliente/Vistas/VentasAutolavado.html"
+    location.href="/Conexion/Cliente/Vistas/historial.html"
 })
 
 inventario.addEventListener("click", (e)=>{
